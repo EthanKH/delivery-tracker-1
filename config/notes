@@ -1,0 +1,30 @@
+# rails generate draft:resource package description:string arrival_date:date details:text
+# rails db:migrate
+# 
+# Useful links
+# 
+# Delivery Tracker
+# https://learn.firstdraft.com/lessons/205-delivery-tracker-1
+# https://delivery-tracker-1.matchthetarget.com/
+# 
+# First Draft
+# https://grades.firstdraft.com/resources/c0def4b5-99fa-408b-abd6-1f0b1ac67b68
+# 
+# MSM Generators
+# https://share.descript.com/view/vOLIJdopRSz
+# 
+# Devise Authentication
+# https://guides.firstdraft.com/authentication-and-authorization-with-devise
+# 
+# msm-generator-template
+# https://fluffy-space-fortnight-gv4wq4597pqhqw7.github.dev/
+# 
+# bulletin-board-2
+# https://learn.firstdraft.com/lessons/137
+# https://share.descript.com/view/qpQZz1iDN8a
+# https://bulletin-board-1.matchthetarget.com/
+# https://shiny-guide-9g7497qv5xr3gw.github.dev/
+# 
+# bulletin-board-1
+# https://cautious-fiesta-jpjw5j46w9vfpr74.github.dev/
+# 

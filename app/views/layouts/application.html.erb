@@ -8,6 +8,27 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <nav>
+      <a href="/">Delivery Tracker</a>
+      |
+      <a href="/users/sign_in">Sign in</a>
+      |
+      <a href="/users/edit">Edit profile</a>
+      |
+      <a href="/users/sign_out">Sign out</a>
+    </nav>
+    <hr>
+    <% if notice.present? %>
+      <div style="color: green">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div style="color: red">
+        <%= alert %>
+      </div>
+    <% end %>
   </head>
 
   <body>
