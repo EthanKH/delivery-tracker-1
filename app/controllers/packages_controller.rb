@@ -26,8 +26,10 @@ class PackagesController < ApplicationController
     if the_package.valid?
       the_package.save
       redirect_to("/packages", { :notice => "Package created successfully." })
+
     else
       redirect_to("/packages", { :alert => the_package.errors.full_messages.to_sentence })
+
     end
   end
 
@@ -45,6 +47,11 @@ class PackagesController < ApplicationController
     else
       redirect_to("/packages/#{the_package.id}", { :alert => the_package.errors.full_messages.to_sentence })
     end
+  end
+
+  def received
+
+    redirect_to("/received", { :notice => "Marked as received." })
   end
 
   def destroy
