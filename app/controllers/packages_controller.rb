@@ -12,7 +12,7 @@ class PackagesController < ApplicationController
 
     matching_packages = Package.where({ :id => the_id })
 
-    @the_package = matching_packages.at(0)
+    the_package = matching_packages.at(0)
 
     render({ :template => "packages/show" })
   end
@@ -22,15 +22,25 @@ class PackagesController < ApplicationController
     the_package.description = params.fetch("query_description")
     the_package.arrival_date = params.fetch("query_arrival_date")
     the_package.details = params.fetch("query_details")
+    the_package.status = false
 
     if the_package.valid?
       the_package.save
-      redirect_to("/packages", { :notice => "Package created successfully." })
+      redirect_to("/packages", { :notice => "Added to list." })
 
     else
       redirect_to("/packages", { :alert => the_package.errors.full_messages.to_sentence })
 
     end
+  end
+
+  def received
+    the_package_id = params.fetch("path_id")
+    the_package = Package.where({ :id => the_package_id }).at(0)
+    the_package.status = true
+    the_package.save
+
+    redirect_to("/packages", { :notice => "Marked as received." })
   end
 
   def update
@@ -47,11 +57,6 @@ class PackagesController < ApplicationController
     else
       redirect_to("/packages/#{the_package.id}", { :alert => the_package.errors.full_messages.to_sentence })
     end
-  end
-
-  def received
-
-    redirect_to("/received", { :notice => "Marked as received." })
   end
 
   def destroy

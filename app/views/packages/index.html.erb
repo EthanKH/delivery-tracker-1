@@ -52,16 +52,19 @@
   <h2>Waiting on</h2>
   <div id="waiting_on_div">
     <% @list_of_packages.each do |a_package| %>
-      <ul>
-        <li>
-        <div> <%= a_package.description %> </div>
-        <div> Supposed to arrive on <%= a_package.arrival_date %> </div>
-        <div> <%= a_package.details %> </div>
-        <form action="/received" method="get">
-          <button>Mark as received</button>
-        </form>
-        </li>
-      </ul>
+      <% if a_package.status == false %>
+        <ul>
+          <li>
+          <div> <%= a_package.description %> </div>
+          <div> Supposed to arrive on <%= a_package.arrival_date %> </div>
+          <div> <%= a_package.details %> </div>
+          <form action="/received/<%= a_package.id %>" method="post">
+            <button>Mark as received</button>
+          </form>
+          </li>
+        </ul>
+      <% else %>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -72,16 +75,19 @@
   <h2>Received</h2>
   <div id="received_div">
     <% @list_of_packages.each do |a_package| %>
-      <ul>
-        <li>
-        <div> <%= a_package.description %> </div>
-        <div> Updated <%= time_ago_in_words(a_package.updated_at) %> ago </div>
-        <div> 
-          <a href="/delete_package/<%= a_package.id %>">
-          Delete</a> 
-        </div>
-        </li>
-      </ul>
+      <% if a_package.status == true %>
+        <ul>
+          <li>
+          <div> <%= a_package.description %> </div>
+          <div> Updated <%= time_ago_in_words(a_package.updated_at) %> ago </div>
+          <div> 
+            <a href="/delete_package/<%= a_package.id %>">
+            Delete</a> 
+          </div>
+          </li>
+        </ul>
+      <% else %>
+      <% end %>
     <% end %>
     
   </div>
@@ -89,8 +95,6 @@
 
 <hr>
 
-
-<hr>
 <div>
   <div>
     <table border="1">
@@ -123,6 +127,10 @@
         </th>
 
         <th>
+        </th>
+
+        <th>
+          Status
         </th>
       </tr>
 
@@ -161,6 +169,10 @@
           <a href="/delete_package/<%= a_package.id %>">
             Delete package
           </a>
+        </td>
+
+        <td>
+          <%= a_package.status %>
         </td>
       </tr>
       <% end %>
