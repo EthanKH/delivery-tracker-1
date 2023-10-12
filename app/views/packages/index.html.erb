@@ -14,7 +14,7 @@
     <h2>
       Expecting a package?
     </h2>
-
+    <% if current_user != nil %>
     <form action="/insert_package" method="post">
       <div>
         <label for="description_box">
@@ -44,6 +44,9 @@
         Log delivery
       </button>
     </form>
+    <% else %>
+      <p> You need to be logged into an account to log a delivery </p>
+    <% end %>
   </div>
 </div>
 
@@ -58,9 +61,12 @@
           <div> <%= a_package.description %> </div>
           <div> Supposed to arrive on <%= a_package.arrival_date %> </div>
           <div> <%= a_package.details %> </div>
-          <form action="/received/<%= a_package.id %>" method="post">
-            <button>Mark as received</button>
-          </form>
+          <% if current_user != nil %>
+            <form action="/received/<%= a_package.id %>" method="post">
+              <button>Mark as received</button>
+            </form>
+          <% else %>
+          <% end %>
           </li>
         </ul>
       <% else %>
@@ -80,10 +86,13 @@
           <li>
           <div> <%= a_package.description %> </div>
           <div> Updated <%= time_ago_in_words(a_package.updated_at) %> ago </div>
-          <div> 
-            <a href="/delete_package/<%= a_package.id %>">
-            Delete</a> 
-          </div>
+          <% if current_user != nil %>
+            <div> 
+              <a href="/delete_package/<%= a_package.id %>">
+              Delete</a> 
+            </div>
+          <% else %>
+          <% end %>
           </li>
         </ul>
       <% else %>
@@ -181,3 +190,7 @@
 </div>
 
 <hr>
+
+<% if current_user != nil %>
+<% else %>
+<% end %>

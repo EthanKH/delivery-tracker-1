@@ -1,4 +1,6 @@
 # rails generate draft:resource package description:string arrival_date:date details:text
+# to add a new column
+# rails generate (or just g) migration AddNameOfColumnToTableName column_name:type_of_value
 # rails db:migrate
 # 
 # Useful links

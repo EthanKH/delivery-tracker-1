@@ -11,11 +11,16 @@
     <nav>
       <a href="/">Delivery Tracker</a>
       |
-      <a href="/users/sign_in">Sign in</a>
-      |
-      <a href="/users/edit">Edit profile</a>
-      |
-      <a href="/users/sign_out">Sign out</a>
+      <% if current_user != nil %>
+        <a href="/users/edit">Edit profile</a>
+        |
+        <a href="/users/sign_out">Sign out</a>
+      <% else %>
+        <a href="/users/sign_up">Sign Up</a>
+        |
+        <a href="/users/sign_in">Sign in</a>
+      <% end %>
+      
     </nav>
     <hr>
     <% if notice.present? %>
@@ -29,6 +34,15 @@
         <%= alert %>
       </div>
     <% end %>
+    <style>
+      .waiting_on {
+        background-color: lightgoldenrodyellow;
+      }
+
+      .received {
+        background-color: lightgreen;
+      }
+    </style>
   </head>
 
   <body>
